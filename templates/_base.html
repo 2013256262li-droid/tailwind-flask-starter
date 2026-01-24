@@ -9,12 +9,12 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- 绔欏唴鍏憡鏉?- 浠呭湪棣栭〉鏄剧ず -->
+    <!-- 缂備焦姊归悷銉╁船閹绢喖绀傛い鎺嗗亾闁硅绻濆?- 婵炲濮撮幊搴★耿椤忓拑绱旈柡宥庡幑閳ь剙顦靛浼村礈瑜嬫禒?-->
     {% if request.path == '/' %}
     <div id="announcement-bar" role="alert" class="flex items-center p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400">
         <div class="flex-1 min-w-0 ms-3">
             <div class="text-sm font-medium truncate">
-                鏈懆鍏?10:00-12:00 缁存姢
+                闂佸搫鐗滈崜娆撳箠閸℃稑绀?10:00-12:00 缂傚倷绀侀悺銊︽叏?
             </div>
         </div>
         <button id="announcement-close" type="button" class="flex-shrink-0 ms-4 -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700" aria-label="Close">
@@ -32,19 +32,19 @@
     {% block extra_js %}{% endblock %}
     
     <script>
-        // 鍏憡鏉￠€昏緫
+        // 闂佺娴氶崜娆撳箟閿熺姴绾ч柨鐔哄Л閸嬫捇寮拌箛鏇炵
         (function() {
             const announcementBar = document.getElementById('announcement-bar');
             const closeButton = document.getElementById('announcement-close');
             const STORAGE_KEY = 'closedAnnouncement';
             const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
 
-            // 闈為椤垫垨DOM涓嶅瓨鍦ㄦ椂鐩存帴閫€鍑?
+            // 闂傚倸鐗忛崑銈夈€呯紒妯镐簻闁割煈鍋勯悘妗狾M婵炴垶鎸哥粔鎾偤閵娾晛鎹堕柕濠忛檮椤ρ囨煟閳轰胶鎽犻悽顖涙尦閺屽懘鍩€椤掑嫬绀?
             if (!announcementBar || !closeButton) {
                 return;
             }
 
-            // 妫€鏌ocalStorage鏄惁鍙敤
+            // 濠碘槅鍋€閸嬫捇鏌″畝濠冪彸ocalStorage闂佸搫瀚烽崹浼村箚娓氣偓瀹曪綁顢涘鍕
             function isLocalStorageAvailable() {
                 try {
                     const key = '__test__';
@@ -56,7 +56,7 @@
                 }
             }
 
-            // 妫€鏌ユ槸鍚﹂渶瑕佹樉绀哄叕鍛婃潯
+            // 濠碘槅鍋€閸嬫捇鏌＄仦璇插姕婵″弶鎮傚畷銉╂晝閸屾稐绮柣鐔告磻閻掞箑螣婢跺瞼鐭嗛柛婵嗗瑜板棝鏌涘☉姗堟敾婵?
             function shouldShowAnnouncement() {
                 if (!isLocalStorageAvailable()) {
                     return true;
@@ -72,24 +72,24 @@
                 return timeDiff > SEVEN_DAYS;
             }
 
-            // 闅愯棌鍏憡鏉?
+            // 闂傚倸鎳忛崝妯何涘畝鍕妞ゆ巻鍋撻柟璇х節瀵?
             function hideAnnouncement() {
-                announcementBar.style.display = 'none';
+                announcementBar.style.display = shouldShowAnnouncement() ? 'flex' : 'none';
                 if (isLocalStorageAvailable()) {
                     localStorage.setItem(STORAGE_KEY, new Date().getTime().toString());
                 }
             }
 
-            // 鍒濆鍖?
+            // 闂佸憡甯楃换鍌烇綖閹版澘绀?
             function init() {
                 if (!shouldShowAnnouncement()) {
-                    announcementBar.style.display = 'none';
+                    announcementBar.style.display = shouldShowAnnouncement() ? 'flex' : 'none';
                 }
 
                 closeButton.addEventListener('click', hideAnnouncement);
             }
 
-            // 椤甸潰鍔犺浇瀹屾垚鍚庢墽琛?
+            // 婵＄偑鍊楅弫璇差焽娴兼潙绀夐柣妯煎劋缁佷即鎮楅悷鐗堟拱闁搞劍宀稿畷銉︽償閵忕姭鎸冮柣?
             document.addEventListener('DOMContentLoaded', init);
         })();
     </script>
