@@ -17,7 +17,7 @@
         </svg>
         <span class="sr-only">Info</span>
         <div class="ms-3 text-sm font-medium min-w-0 flex-1 truncate">
-            本周六 10:00-12:00 维护
+            闁哄牜鍓欓幊鍡涘礂?10:00-12:00 缂備礁鐡ㄦ慨?
         </div>
         <button type="button" id="announcement-close" class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex items-center justify-center h-8 w-8 flex-shrink-0 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700" aria-label="Close">
             <span class="sr-only">Close</span>
@@ -38,6 +38,7 @@
                 // Check if announcement bar exists (only on homepage)
                 const announcementBar = document.getElementById('announcement-bar');
                 const closeButton = document.getElementById('announcement-close');
+    if (! || !) { return; }
                 
                 if (!announcementBar || !closeButton) {
                     // Not on homepage, safely exit
